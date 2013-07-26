@@ -87,116 +87,116 @@ end
 #######################################################################
 
 class ACLBlockTest < ActionController::TestCase
-  tests ACLBlock
-
-  include BaseTests
+  describe 'ACLBlock' do
+    include BaseTests
+  end
 end
 
 class ACLMethodTest < ActionController::TestCase
-  tests ACLMethod
-
-  include BaseTests
-  include ShouldRespondToAcl
+  describe 'ACLMethod' do
+    include BaseTests
+    include ShouldRespondToAcl
+  end
 end
 
 class ACLMethod2Test < ActionController::TestCase
-  tests ACLMethod2
-
-  include BaseTests
-  include ShouldRespondToAcl
+  describe 'ACLMethod2' do
+    include BaseTests
+    include ShouldRespondToAcl
+  end
 end
 
 class ACLArgumentsTest < ActionController::TestCase
-  tests ACLArguments
-
-  include BaseTests
+  describe 'ACLArguments' do
+    include BaseTests
+  end
 end
 
 class ACLBooleanMethodTest < ActionController::TestCase
-  tests ACLBooleanMethod
-
-  include BaseTests
+  describe 'ACLBooleanMethod' do
+    include BaseTests
+  end
 end
 
 class ACLIvarsTest < ActionController::TestCase
-  tests ACLIvars
+  describe 'ACLIvars' do
 
-  it "should allow owner of foo to destroy" do
-    delete :destroy, :user => OwnerOfFoo.new
-    @response.body.should == 'OK'
-  end
+    it "should allow owner of foo to destroy" do
+      delete :destroy, :user => OwnerOfFoo.new
+      @response.body.should == 'OK'
+    end
 
-  it "should allow bartender to destroy" do
-    delete :destroy, :user => Bartender.new
-    @response.body.should == 'OK'
+    it "should allow bartender to destroy" do
+      delete :destroy, :user => Bartender.new
+      @response.body.should == 'OK'
+    end
   end
 end
 
 class ACLSubjectMethodTest < ActionController::TestCase
-  tests ACLSubjectMethod
+  describe 'ACLSubjectMethod' do
+    it "should allow the only user to index" do
+      get :index, :user => TheOnlyUser.instance
+      @response.body.should == 'OK'
+    end
 
-  it "should allow the only user to index" do
-    get :index, :user => TheOnlyUser.instance
-    @response.body.should == 'OK'
-  end
-
-  it "should deny anonymous to index" do
-    get :index
-    @response.body.should == 'AccessDenied'
+    it "should deny anonymous to index" do
+      get :index
+      @response.body.should == 'AccessDenied'
+    end
   end
 end
 
 class ACLObjectsHashTest < ActionController::TestCase
-  tests ACLObjectsHash
+  describe 'ACLObjectsHash' do
+    it "should consider objects hash and prefer it to @ivar" do
+      get :allow, :user => OwnerOfFoo.new
+      @response.body.should == 'OK'
+    end
 
-  it "should consider objects hash and prefer it to @ivar" do
-    get :allow, :user => OwnerOfFoo.new
-    @response.body.should == 'OK'
-  end
-
-  it "should return AccessDenied when not logged in" do
-    get :allow
-    @response.body.should == 'AccessDenied'
+    it "should return AccessDenied when not logged in" do
+      get :allow
+      @response.body.should == 'AccessDenied'
+    end
   end
 end
 
 class ACLActionOverrideTest < ActionController::TestCase
-  tests ACLActionOverride
+  describe 'ACLActionOverride' do
+    it "should allow index action to anonymous" do
+      get :check_allow, :_action => :index
+      @response.body.should == 'OK'
+    end
 
-  it "should allow index action to anonymous" do
-    get :check_allow, :_action => :index
-    @response.body.should == 'OK'
-  end
+    it "should deny show action to anonymous" do
+      get :check_allow, :_action => :show
+      @response.body.should == 'AccessDenied'
+    end
 
-  it "should deny show action to anonymous" do
-    get :check_allow, :_action => :show
-    @response.body.should == 'AccessDenied'
-  end
+    it "should deny edit action to regular user" do
+      get :check_allow_with_foo, :_action => :edit, :user => TheOnlyUser.instance
 
-  it "should deny edit action to regular user" do
-    get :check_allow_with_foo, :_action => :edit, :user => TheOnlyUser.instance
+      @response.body.should == 'AccessDenied'
+    end
 
-    @response.body.should == 'AccessDenied'
-  end
-
-  it "should allow edit action to owner of foo" do
-    get :check_allow_with_foo, :_action => :edit, :user => OwnerOfFoo.new
-
-    @response.body.should == 'OK'
+    it "should allow edit action to owner of foo" do
+      get :check_allow_with_foo, :_action => :edit, :user => OwnerOfFoo.new
+      @response.body.should == 'OK'
+    end
   end
 end
 
 class ACLHelperMethodTest < ActionController::TestCase
-  tests ACLHelperMethod
+  describe 'ACLHelperMethod' do
+    it "should return OK checking helper method" do
+      get :allow, :user => OwnerOfFoo.new
+      @response.body.should == 'OK'
+    end
 
-  it "should return OK checking helper method" do
-    get :allow, :user => OwnerOfFoo.new
-    @response.body.should == 'OK'
-  end
-
-  it "should return AccessDenied when not logged in" do
-    get :allow
-    @response.body.should == 'AccessDenied'
+    it "should return AccessDenied when not logged in" do
+      get :allow
+      @response.body.should == 'AccessDenied'
+    end
   end
 end
 
@@ -255,35 +255,32 @@ module ACLQueryMixin
 end
 
 class ACLQueryMethodTest < ActionController::TestCase
-  tests ACLQueryMethod
-
-  it "should respond to :acl?" do
-    @controller.should respond_to(:acl?)
+  describe 'ACLQueryMethod' do
+    it "should respond to :acl?" do
+      @controller.should respond_to(:acl?)
+    end
+    include ACLQueryMixin
   end
-
-  include ACLQueryMixin
 end
 
 class ACLQueryMethodWithLambdaTest < ActionController::TestCase
-  tests ACLQueryMethodWithLambda
-
-  it "should respond to :acl?" do
-    @controller.should respond_to(:acl?)
+  describe 'ACLQueryMethodWithLambda' do
+    it "should respond to :acl?" do
+      @controller.should respond_to(:acl?)
+    end
+    include ACLQueryMixin
   end
-
-  include ACLQueryMixin
 end
 
 #######################################################################
 
 class ACLNamedQueryMethodTest < ActionController::TestCase
-  tests ACLNamedQueryMethod
-
-  it "should respond to :allow_ay" do
-    @controller.should respond_to(:allow_ay)
+  describe 'ACLNamedQueryMethod' do
+    it "should respond to :allow_ay" do
+      @controller.should respond_to(:allow_ay)
+    end
+    include ACLQueryMixin
   end
-
-  include ACLQueryMixin
 end
 
 #######################################################################
@@ -295,42 +292,44 @@ class ArgumentsCheckingTest < ActiveSupport::TestCase
     end.should raise_error(ArgumentError)
   end
 
-  it "should raise ArgumentError without a block" do
-    arg_err do
-      class FailureController < ApplicationController
-        access_control
+  describe 'ArgumentsCheckingTest' do
+    it "should raise ArgumentError without a block" do
+      arg_err do
+        class FailureController < ApplicationController
+          access_control
+        end
       end
     end
-  end
 
-  it "should raise ArgumentError with 1st argument which is not a symbol" do
-    arg_err do
-      class FailureController < ApplicationController
-        access_control 123 do end
+    it "should raise ArgumentError with 1st argument which is not a symbol" do
+      arg_err do
+        class FailureController < ApplicationController
+          access_control 123 do end
+        end
       end
     end
-  end
 
-  it "should raise ArgumentError with more than 1 positional argument" do
-    arg_err do
-      class FailureController < ApplicationController
-        access_control :foo, :bar do end
+    it "should raise ArgumentError with more than 1 positional argument" do
+      arg_err do
+        class FailureController < ApplicationController
+          access_control :foo, :bar do end
+        end
       end
     end
-  end
 
-  it "should raise ArgumentError with :helper => true and no method name" do
-    arg_err do
-      class FailureController < ApplicationController
-        access_control :helper => true do end
+    it "should raise ArgumentError with :helper => true and no method name" do
+      arg_err do
+        class FailureController < ApplicationController
+          access_control :helper => true do end
+        end
       end
     end
-  end
 
-  it "should raise ArgumentError with :helper => :method and a method name" do
-    arg_err do
-      class FailureController < ApplicationController
-        access_control :meth, :helper => :another_meth do end
+    it "should raise ArgumentError with :helper => :method and a method name" do
+      arg_err do
+        class FailureController < ApplicationController
+          access_control :meth, :helper => :another_meth do end
+        end
       end
     end
   end

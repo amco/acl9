@@ -11,7 +11,7 @@ class Foo < ActiveRecord::Base
 end
 
 class Uuid < ActiveRecord::Base
-  set_primary_key "uuid"  
+  primary_key = "uuid"
   acts_as_authorization_object
 end
 
@@ -42,17 +42,17 @@ end
 module Other
 
   class Other::User < ActiveRecord::Base
-    set_table_name "other_users"
+    table_name = :other_users
     acts_as_authorization_subject :join_table_name => "other_roles_other_users", :role_class_name => "Other::Role"
   end
 
   class Other::Role < ActiveRecord::Base
-    set_table_name "other_roles"
+    table_name = :other_roles
     acts_as_authorization_role :join_table_name => "other_roles_other_users", :subject_class_name => "Other::User"
   end
 
   class Other::FooBar < ActiveRecord::Base
-    set_table_name "other_foo_bars"
+    table_name = :other_foo_bars
     acts_as_authorization_object :role_class_name => 'Other::Role', :subject_class_name => "Other::User"
   end
 
