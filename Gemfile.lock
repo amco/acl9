@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     acl9 (2.1.1)
-      rails (>= 4.0.0, < 5.1)
+      rails (>= 5.0.0, < 5.1)
 
 GEM
   remote: http://rubygems.org/
