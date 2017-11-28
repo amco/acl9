@@ -1,4 +1,4 @@
-class CreateTables < ActiveRecord::Migration
+class CreateTables < ActiveRecord::Migration[5.0]
   def change
     create_table :roles do |t|
       t.string   :name,              :limit => 40
@@ -14,9 +14,6 @@ class CreateTables < ActiveRecord::Migration
       t.references  :user
       t.references  :role
     end
-
-    add_index :roles_users, :user_id
-    add_index :roles_users, :role_id
     
     create_table :users do |t|
       t.string :name
@@ -59,9 +56,6 @@ class CreateTables < ActiveRecord::Migration
       t.references  :access
     end
 
-    add_index :accesses_accounts, :access_id
-    add_index :accesses_accounts, :account_id
-
     create_table :foo_bars do |t|
       t.string :name
       t.timestamps null: false
@@ -82,9 +76,6 @@ class CreateTables < ActiveRecord::Migration
       t.references  :user
       t.references  :role
     end
-
-    add_index :other_roles_users, :user_id
-    add_index :other_roles_users, :role_id
     
     create_table :other_users do |t|
       t.string :name
