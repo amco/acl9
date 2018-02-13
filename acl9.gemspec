@@ -16,11 +16,11 @@ Gem::Specification.new do |s|
   s.version           = Acl9::VERSION
   s.license           = 'MIT'
 
-  s.required_ruby_version = ">= 2"
+  s.required_ruby_version = ">= 2.2.2"
 
   s.rdoc_options      = ["--charset=UTF-8"]
 
-  s.add_dependency "rails", '>= 5.0.0', '< 5.1'
+  s.add_dependency "rails", '5.1.4'
 
   s.add_development_dependency "simplecov"
   s.add_development_dependency "yard"
