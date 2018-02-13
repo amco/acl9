@@ -38,11 +38,11 @@ module ControllerExtensions
     end
 
     def assert_permitted *args
-      assert @tester.check_allowance *args
+      assert @tester.check_allowance(*args)
     end
 
     def assert_forbidden *args
-      refute @tester.check_allowance *args
+      refute @tester.check_allowance(*args)
     end
 
     def assert_all_forbidden

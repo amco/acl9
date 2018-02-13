@@ -3,15 +3,6 @@ SimpleCov.start
 
 ENV["RAILS_ENV"] = "test"
 
-require 'minitest/autorun'
-require 'minitap'
-
-if defined? Minitap
-  Minitest.reporter = Minitap::TapY
-else
-  MiniTest::Unit.runner = MiniTest::TapY.new
-end
-
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 require "rails/test_help"
 

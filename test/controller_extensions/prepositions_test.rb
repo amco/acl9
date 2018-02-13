@@ -30,7 +30,7 @@ module ControllerExtensions
 
     test "invalid option raises ArgumentError" do
       assert @foo = Foo.first_or_create
-      assert ( user = User.create).has_role! :manager, of: @foo
+      assert (User.create).has_role! :manager, of: @foo
 
       assert_raise ArgumentError do
         @tester.acl_block! { allow :manager, of: :foo, something_bad: :foo }

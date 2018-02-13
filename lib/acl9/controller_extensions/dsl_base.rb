@@ -5,7 +5,7 @@ module Acl9
     class Base
       include Prepositions
 
-      attr_reader :allows, :denys
+      attr_reader :allows, :denys, :action_clause
 
       def initialize(*args)
         @default_action = nil
@@ -147,7 +147,7 @@ module Acl9
       end
 
       def _add_rule(what, condition)
-        anded = [what] + [@action_clause, condition].compact
+        anded = [what] + [action_clause, condition].compact
         anded[0] = "(#{anded[0]})" if anded.size > 1
 
         (@current_rule == :allow ? @allows : @denys) << anded.join(' && ')
