@@ -10,7 +10,3 @@ gemfile:
 
 matrix:
   fast_finish: true
-
-addons:
-  code_climate:
-    repo_token: 6701faf591ff926cd9b3ea7f07c5e72984d2b1e26b33caba26114a6bfe859a11
