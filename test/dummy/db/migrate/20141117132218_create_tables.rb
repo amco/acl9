@@ -4,7 +4,7 @@ class CreateTables < ActiveRecord::Migration[5.0]
       t.string   :name,              :limit => 40
       t.boolean  :system
       t.string   :authorizable_type, :limit => 40
-      t.integer  :authorizable_id
+      t.string   :authorizable_id
       t.timestamps null: false
     end
 

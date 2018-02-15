@@ -1,4 +1,4 @@
-class ACLActionOverride < ApplicationController
+class AclActionOverridesController < EmptyController
   access_control :allowed?, :filter => false do
     allow all, :to => :index
     deny all, :to => :show

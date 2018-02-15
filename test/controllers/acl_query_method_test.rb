@@ -1,6 +1,10 @@
 require_relative 'acl_query_mixin'
 
-class ACLQueryMethodTest < ActionController::TestCase
+class AclQueryMethodTest < ActionDispatch::IntegrationTest
+  setup do
+    @controller = AclQueryMethod.new
+  end
+
   test "should respond to :acl?" do
     assert @controller.respond_to? :acl?
   end

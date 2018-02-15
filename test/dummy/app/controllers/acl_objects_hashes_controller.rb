@@ -1,4 +1,4 @@
-class ACLObjectsHash < ApplicationController
+class AclObjectsHashesController < ApplicationController
   access_control :allowed?, :filter => false do
     allow :owner, :of => :foo
   end

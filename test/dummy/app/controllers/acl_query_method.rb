@@ -1,4 +1,4 @@
-class ACLQueryMethod < ApplicationController
+class AclQueryMethod < ApplicationController
   attr_accessor :current_user
 
   access_control :acl, :query_method => true do

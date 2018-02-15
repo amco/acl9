@@ -1,5 +1,5 @@
-class ACLMethod < EmptyController
-  access_control :as_method => :acl do
+class AclMethod2sController < EmptyController
+  access_control :acl do
     allow all, :to => [:index, :show]
     allow :admin, :except => [:index, :show]
   end
