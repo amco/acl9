@@ -4,6 +4,8 @@ source "http://rubygems.org"
 
 gem "appraisal"
 gem "byebug"
+gem 'minitest-reporters'
+gem "sqlite3"
 gem "rails", "5.1.5"
 
 gemspec :path => "../"

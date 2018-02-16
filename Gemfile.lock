@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     acl9 (2.1.1)
-      rails (~> 5.1.5)
+      rails (>= 5.0.0, < 5.2)
 
 GEM
   remote: http://rubygems.org/
@@ -133,12 +133,12 @@ PLATFORMS
 
 DEPENDENCIES
   acl9!
-  appraisal
-  byebug
-  minitest-reporters
-  simplecov
-  sqlite3
-  yard
+  appraisal (~> 2.2)
+  byebug (~> 10.0)
+  minitest-reporters (~> 1.1)
+  simplecov (~> 0.15)
+  sqlite3 (~> 1.3)
+  yard (~> 0.9)
 
 BUNDLED WITH
    1.16.0
