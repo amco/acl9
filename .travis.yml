@@ -8,5 +8,8 @@ gemfile:
   - gemfiles/rails_5.0.gemfile
   - gemfiles/rails_5.1.gemfile
 
+before_install:
+  - gem update --system
+
 matrix:
   fast_finish: true
