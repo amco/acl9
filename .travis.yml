@@ -1,9 +1,10 @@
 cache: bundler
 language: ruby
 rvm:
-  - 2.7.2
   - 3.0.0
   - 3.1.2
+  - 3.2.5
+  - 3.3.4
   - ruby-head
 
 gemfile:
@@ -17,12 +18,11 @@ jobs:
     - rvm: ruby-head
   exclude:
     - rvm: 3.0.0
-      gemfile: gemfiles/rails_6.0.gemfile
-    - rvm: 3.1.2
-      gemfile: gemfiles/rails_6.0.gemfile
-    - rvm: 3.1.2
       gemfile: gemfiles/rails_6.1.gemfile
-    - rvm: 2.7.2
+    - rvm: 3.1.0
       gemfile: gemfiles/rails_7.0.gemfile
-    - rvm: 3.0.0
-      gemfile: gemfiles/rails_7.0.gemfile
+    - rvm: 3.2.0
+      gemfile: gemfiles/rails_7.1.gemfile
+    - rvm: 3.3.0
+      gemfile: gemfiles/rails_7.2.gemfile
+
