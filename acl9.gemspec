@@ -16,12 +16,12 @@ Gem::Specification.new do |s|
   s.version           = Acl9::VERSION
   s.license           = 'MIT'
 
-  s.required_ruby_version = ">= 2"
+  s.required_ruby_version = ">= 3"
 
   s.rdoc_options      = ["--charset=UTF-8"]
 
-  s.add_dependency "rails", '>= 6.0', '< 7.3'
+  s.add_dependency "rails", '>= 7.0', '< 8.1'
 
-  s.add_development_dependency "yard"
-  s.add_development_dependency "sqlite3", "~> 2.0"
+  s.add_development_dependency "yard", "~> 0.9"
+  s.add_development_dependency "sqlite3", "~> 2.5"
 end
