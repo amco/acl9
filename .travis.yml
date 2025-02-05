@@ -1,28 +1,28 @@
 cache: bundler
 language: ruby
 rvm:
-  - 3.0.0
-  - 3.1.2
-  - 3.2.5
-  - 3.3.4
+  - 3.1.6
+  - 3.2.7
+  - 3.3.5
   - ruby-head
 
 gemfile:
-  - gemfiles/rails_6.0.gemfile
-  - gemfiles/rails_6.1.gemfile
   - gemfiles/rails_7.0.gemfile
+  - gemfiles/rails_7.1.gemfile
+  - gemfiles/rails_7.2.gemfile
+  - gemfiles/rails_8.0.gemfile
 
 jobs:
   fast_finish: true
   allow_failures:
     - rvm: ruby-head
   exclude:
-    - rvm: 3.0.0
-      gemfile: gemfiles/rails_6.1.gemfile
-    - rvm: 3.1.0
+    - rvm: 3.1.2
       gemfile: gemfiles/rails_7.0.gemfile
-    - rvm: 3.2.0
+    - rvm: 3.2.7
       gemfile: gemfiles/rails_7.1.gemfile
-    - rvm: 3.3.0
+    - rvm: 3.3.5
       gemfile: gemfiles/rails_7.2.gemfile
+    - rvm: 3.3.5
+      gemfile: gemfiles/rails_8.0.gemfile
 
