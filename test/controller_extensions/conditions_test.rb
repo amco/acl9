@@ -1,4 +1,6 @@
-require_relative 'base'
+require "ostruct"
+
+require_relative "base"
 
 module ControllerExtensions
   class ConditionsTest < Base
